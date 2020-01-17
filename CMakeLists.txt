@@ -132,7 +132,7 @@ CMAKE_DEPENDENT_OPTION(DUMP_SUPPORT "Dump code support; normally on, except in r
 CMAKE_DEPENDENT_OPTION(DISABLE_ASSERTS "Disable assert(); Asserts are enabled in debug builds, disabled in release builds" OFF "NOT RELEASE_BUILD" ON)
 
 option(BUILD_AVX512 "Experimental: support avx512 in the fat runtime" 
-	OFF)
+    OFF)
 
 option(WINDOWS_ICC "Use Intel C++ Compiler on Windows, default off, requires ICC to be set in project" OFF)
 
@@ -208,7 +208,6 @@ else()
         if (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|AARCH64") 
             set (EXEC_ARGS ${CC_ARG1} -c -Q --help=target -march=armv8-a -mtune=armv8-a)
         endif()
-        
         set(TUNE_FLAG ${GNUCC_ARCH})
     else ()
         set(TUNE_FLAG native)
@@ -350,7 +349,7 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     elseif (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|AARCH64")
         message(STATUS "AARCH64 platform don't support fat runtime")
         set (FAT_RUNTIME_REQUISITES FALSE)
-	else()
+    else()
         include (${CMAKE_MODULE_PATH}/attrib.cmake)
         if (NOT HAS_C_ATTR_IFUNC)
             message(STATUS "Compiler does not support ifunc attribute, cannot build fat runtime")
@@ -381,7 +380,6 @@ set(C_FLAGS_TO_CHECK
  "-Wstrict-prototypes"
  "-Wmissing-prototypes"
 )
-
 foreach (FLAG ${C_FLAGS_TO_CHECK})
     # munge the name so it doesn't break things
     string(REPLACE "-" "_" FNAME C_FLAG${FLAG})
@@ -507,7 +505,6 @@ if (CORRECT_PCRE_VERSION AND PCRE_BUILD_SOURCE AND BUILD_STATIC_LIBS)
 endif()
 
 add_subdirectory(unit)
-
 if (EXISTS ${CMAKE_SOURCE_DIR}/tools/CMakeLists.txt)
     add_subdirectory(tools)
 endif()
